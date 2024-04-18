@@ -1,23 +1,18 @@
-version: '3.8'
+version: '3.1'
 
 services:
-  app:
-    build:
-      context: .
-      dockerfile: Dockerfile
-    ports:
-      - "8080:8080"
-    depends_on:
-      - db
-    environment:
-      SPRING_DATASOURCE_URL: jdbc:mysql://localhost:3306/TLCRoomBookingDB
-      SPRING_DATASOURCE_USERNAME: root
-      SPRING_DATASOURCE_PASSWORD: manoj2603
-
   db:
     image: mysql:latest
-    ports:
-      - "3306:3306"
+    restart: always
     environment:
-      MYSQL_ROOT_PASSWORD: manoj2603
       MYSQL_DATABASE: TLCRoomBookingDB
+      MYSQL_USER: root
+      MYSQL_PASSWORD: manoj2603
+      MYSQL_ROOT_PASSWORD: manoj2603
+    ports:
+      - '3306:3306'
+    volumes:
+      - db_data:/var/lib/mysql
+
+volumes:
+  db_data:

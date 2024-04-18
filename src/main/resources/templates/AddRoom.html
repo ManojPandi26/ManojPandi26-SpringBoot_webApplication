@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Add Room</title>
+    <link rel="stylesheet" th:href="@{Styles/AddRoom.css}">
+
+</head>
+
+<body>
+
+<header>
+        <nav>
+            <div class="container">
+            	 <img alt="logo" src="images/homelogo.jpg">
+                <div class="logo">TLC Hotels</div>
+                <ul class="nav-links">
+                    <li class="hd"><a th:href="@{/home}">Home</a></li>
+                    <li class="hd"><a th:href="@{/Rooms}">Rooms</a></li>
+                    <li class="hd"><a th:href="@{/Rerservations}">Reservations</a></li>
+                    <li class="hd"><a th:href="@{/Contact}">Contact</a></li>
+                    <li><span sec:authorize="isAuthenticated"><a th:href="@{/logout}" class="logout-btn">Logout</a></span></li> <!-- Add class for styling -->
+                </ul>
+            </div>
+        </nav>
+    </header>
+
+
+	 <div th:if="${message}" id="successMessage" th:text="${message}" th:class="${alertClass}"></div>
+	<div class="form-container">
+    <h1>Add Room</h1>
+    <form th:action="@{/add}" method="post">
+    	<div class="inputs">
+    	<label for="roomType">Room Type:</label>
+        <input type="text" id="roomType" name="roomType" required>
+        <br>
+    	</div>
+        <div class="inputs">
+        <label for="description">Description:</label>
+        <input type="text" id="description" name="description" required>
+        <br>
+        </div>
+        <div class="inputs">
+        <label for="capacity">Capacity:</label>
+        <input type="number" id="capacity" name="capacity" required>
+        <br>
+        </div>
+        <div class="inputs">
+        <label for="pricePerNight">Price Per Night:</label>
+        <input type="text" id="pricepernight" name="pricepernight" required>
+        <br>
+        </div>
+        <div class="inputs"><button class="confirm_btn" type="submit">Add Room</button></div>
+        
+    </form>
+    </div>
+    
+    <footer>
+        <div class="container2	">
+            <p>&copy; 2024 Hotel Room Reservation System. All rights reserved.</p>
+        </div>
+    </footer>
+
+<script>
+        // JavaScript function to hide the success message after 5 seconds
+        function hideSuccessMessage() {
+            var successMessage = document.getElementById("successMessage");
+            if (successMessage) {
+                setTimeout(function() {
+                    successMessage.style.display = "none";
+                }, 5000); // 5000 milliseconds = 5 seconds
+            }
+        }
+        // Call the function when the page loads
+        window.onload = function() {
+            hideSuccessMessage();
+        };
+    </script>
+    
+</body>
+</html>

@@ -1,0 +1,168 @@
+/* dashboard.css */
+body, html {
+    margin: 0;
+    padding: 0;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: #f4f4f4;
+}
+
+.container {
+    display: flex;
+    height: 100vh;
+    
+}
+
+.sidebar {
+    width: 250px;
+    background-color: #333;
+    color: white;
+    text-align:center;
+    padding: 15px;
+    position:fixed;
+    overflow-y: auto;
+ 	height: 100vh;
+}
+
+.welcome{
+	margin-bottom:40px;
+}
+.welcome p{
+	margin:0;	
+}
+.welcome span{
+	font-weight:bold;
+}
+.logo img {
+    width: 90px;
+    height:90px;
+    border-radius:45px;
+}
+
+.menu {
+    list-style: none;
+    padding: 0;
+}
+
+.menu li {
+    margin-bottom: 30px;
+    margin-left:10px;
+}
+
+.menu a {
+    text-decoration: none;
+    color: #fff;
+    font-weight: bold;
+    display: flex;
+    align-items: center;
+}
+
+.menu a i {
+    margin-right: 10px;
+}
+
+.menu a:hover {
+    color: #ffcc00;
+}
+
+.main-dashboard {
+	margin-left: 270px;
+    flex-grow: 1;
+    padding: 20px;
+}
+
+.header {
+    text-align: center;
+    margin-bottom: 20px;
+    background-color: gray;
+    padding:20px;
+    border-radius:15px;
+
+}
+.logout-btn{
+	 background-color: #FFC107;
+    color: black;
+    padding: 5px 10px;
+    border-radius: 5px;
+    text-decoration: none;
+    font-size: 16px;
+    position: absolute;
+    bottom: 40px;
+    right: 20px;
+}
+.logout-btn:hover{
+	background-color: #FFA000
+}
+
+/* dashboard.css */
+/* dashboard.css */
+.metrics {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr); /* Three metrics per row */
+    gap: 20px;
+    padding: 20px;
+    margin-bottom:80px;
+}
+.metric {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+    border-radius: 15px;
+    color: white;
+    font-size: 1.5em;
+    position: relative;
+}
+
+.metric i {
+    position: absolute;
+    top: 27px;
+    background-color:rgba(0,0,0,0.7);
+    left:20px;
+    font-size: 35px;
+    padding:15px;
+    border-radius:40px;
+}
+
+.metric p {
+    font-size:24px;
+    margin: 0;
+}
+
+.metric span {
+    font-size: 1.5em;
+    
+}
+
+/* Custom colors for each metric */
+.metric.customers { background-color: #4CAF50; }
+.metric.staff { background-color: #2196F3; }
+.metric.rooms { background-color: #FFC107; }
+.metric.occupied { background-color: #F44336; }
+.metric.available { background-color: #00BCD4; }
+.metric.revenue { background-color: #9C27B0; }
+
+
+.booking-details {
+    width: 97%;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+    padding:15px;
+    border-radius: 15px;
+    margin-bottom:80px;
+}
+
+table {
+    width: 95%;
+    border-collapse: collapse;
+    margin-left:20px;
+}
+
+th, td {
+    border: 1px solid #ddd;
+    padding: 10px;
+    text-align: left;
+}
+
+th {
+    background-color: #FFC107;
+}

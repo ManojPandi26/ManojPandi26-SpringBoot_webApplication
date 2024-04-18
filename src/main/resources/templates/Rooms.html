@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Check Room Availability</title>
+    <link rel="stylesheet" th:href="@{Styles/Rooms.css}">
+</head>
+<body>
+    <header>
+        <nav>
+            <div class="container">
+            	 <img alt="logo" src="images/homelogo.jpg">
+                <div class="logo">TLC Hotels</div>
+                <ul class="nav-links">
+                    <li class="hd"><a th:href="@{/home}">Home</a></li>
+                    <li class="hd"><a th:href="@{/Rooms}">Rooms</a></li>
+                    <li class="hd"><a th:href="@{/Reservations}">Reservations</a></li>
+                    <li class="hd"><a th:href="@{/Contact}">Contact</a></li>
+                    <li><span sec:authorize="isAuthenticated"><a th:href="@{/logout}" class="logout-btn">Logout</a></span></li> <!-- Add class for styling -->
+                </ul>
+            </div>
+        </nav>
+    </header>
+
+    <table>
+        <thead>
+            <tr>
+                <th>Room Type</th>
+                <th>Description</th>
+                <th>Price</th>
+                <th>Capacity</th>
+                <th>Action</th>
+                
+            </tr>
+        </thead>
+        <tbody>
+            <tr th:each="room : ${availableRooms}">   
+                <td th:text="${room.roomType}">Room Type</td>
+                <td th:text="${room.description}">Description</td>
+                <td th:text="${room.pricepernight}">Price Per Night</td>
+                <td th:text="${room.capacity}">Capacity</td>
+                   <td><a th:if="${room.isAvailable}" th:href="@{/bookRoom(roomId=${room.roomID})}"
+                    class="book-btn">Available</a>
+                     <span th:unless="${room.isAvailable}" class="booked_btn">Booked</span>
+                    </td>
+                
+            </tr>
+        </tbody>
+    </table>
+  
+  
+  
+  
+
+    <footer>
+        <div class="container2">
+            <p>&copy; 2024 Hotel Reservation System. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script src="scripts.js"></script>
+</body>
+</html>
+
+</html>

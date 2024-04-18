@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Home</title>
+    <link rel="stylesheet" th:href="@{Styles/home3.css}">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <header>
+        <nav>
+            <div class="container">
+            	 <img alt="logo" src="images/homelogo.jpg">
+                <div class="logo">TLC Hotels</div>
+                <ul class="nav-links">
+                    <li class="hd"><a th:href="@{/home}">Home</a></li>
+                    <li class="hd"><a th:href="@{/Rooms}">Rooms</a></li>
+                    <li class="hd"><a th:href="@{/Reservations}">Reservations</a></li>
+                    <li class="hd"><a th:href="@{/Contact}">Contact</a></li>
+                    <li><span sec:authorize="isAuthenticated"><a th:href="@{/logout}" class="logout-btn">Logout</a></span></li> <!-- Add class for styling -->
+                </ul>
+            </div>
+        </nav>
+    </header>
+
+    <section class="hero">
+    
+        <div class="container2">
+        
+            <h1>Welcome to Our Hotel, <span th:text="${userdetail.fullname}"></span>!</h1>
+            <p>Book your stay with ease and comfort.</p>
+            <a th:href="@{/Rooms}" class="btn">Book Now</a>
+        </div>
+    </section>
+
+    <section class="features">
+        <div class="container2">
+            <h2>Why Choose Us?</h2>
+            <div class="feature">
+                <img src="images/homefst.jpg" alt="Comfortable Rooms">
+                <h3>Comfortable Rooms</h3>
+                <p>Relax in our cozy and well-equipped rooms.</p>
+            </div>
+            <div class="feature">
+                <img src="images/homesnd.jpg" alt="Great Location">
+                <h3>Great Location</h3>
+                <p>Conveniently located near popular attractions.</p>
+            </div>
+            <div class="feature">
+                <img src="images/hometrd.jpg" alt="Excellent Service">
+                <h3>Excellent Service</h3>
+                <p>Our friendly staff is dedicated to making your stay memorable.</p>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container2	">
+            <p>&copy; 2024 Hotel Room Reservation System. All rights reserved.</p>
+        </div>
+    </footer>
+
+    
+</body>
+</html>

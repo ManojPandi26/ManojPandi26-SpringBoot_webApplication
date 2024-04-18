@@ -1,0 +1,300 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>UpdateRooms</title>
+<style>
+body {
+    font-family: 'Roboto', sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f0f0f0;
+    color: #333;
+}
+.container {
+    
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    margin: 0 auto;
+    padding: 0 40px;
+}
+
+/* Header Styles */
+header {
+    background-color: #333;
+    color: #fff;
+    padding: 20px 0;
+    text-align: center;
+    position: fixed;
+    width: 100%;
+    top: 0;
+    left: 0;
+    z-index: 100;
+}
+
+header .container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+header .container img {
+    width: 70px; /* Adjust the width as needed */
+    height: 70px;
+    border-radius:35px;
+    z-index: 1;
+}
+
+.logo {
+    font-size: 44px;
+    font-weight: 700;
+    margin-left:-650px;
+
+}
+
+.nav-links {
+    list-style-type: none;
+    display: flex;
+}
+
+.nav-links li {
+    margin-right: 20px;
+}
+
+.nav-links li a {
+    color: #fff;
+    text-decoration: none;
+}
+.hd{
+	position: relative;
+	width: max-content;
+}
+.hd::after{
+	position: absolute;
+	content: "";
+	top:94%;
+	left:0;
+	height:2px;
+	width:100%;
+	background-color: #FFC107;
+	transition:0.5s;
+	transform:scale(0);
+}
+.hd:hover::after{
+	transform:scale(1);
+}
+
+.nav-links .hd a:hover {
+    color:#FFC107 ;
+}
+
+.logout-btn {
+    background-color: #FFC107;
+    color: #fff;
+    padding: 10px 20px;
+    border-radius: 5px;
+    text-decoration: none;
+    font-size: 18px;
+}
+
+.logout-btn:hover {
+    background-color: #FFA000;
+}
+
+
+h1{
+margin-top:140px;
+text-align: center;
+}
+
+
+footer {
+    background-color: #333;
+    color: #fff;
+    text-align: center;
+    padding: 16px 0;
+    width: 100%;
+    bottom: 0;
+    left: 0;
+    z-index: 1000;
+}
+
+
+.success-msg{
+    	background-color: #FFC107;
+    	position:absolute;
+    	margin-left: 48%;
+    	display:inline-block;
+    	padding:8px 20px;
+    	margin-top: -80px;
+    	font-size: 18px;
+    	font-weight: bold; 	
+    	transform:translate(-50%,-50%);
+    	border-radius: 10px;
+    	z-index: 1000;
+    }
+    
+    .error-msg{
+    	background-color: red;
+    	color:white;
+    	position:absolute;
+    	margin-left: 48%;
+    	display:inline-block;
+    	padding:10px 40px;
+    	margin-top: -80px;
+    	font-size: 18px;
+    	font-weight: bold; 	
+    	transform:translate(-50%,-50%);
+    	border-radius: 10px;
+    	z-index: 1000;
+    
+    }
+    
+    
+    
+    table {
+    width: 90%;
+    margin: 40px auto; /* Adjust margin as needed */
+    border-collapse: collapse;
+}
+
+
+th, td {
+    padding: 12px;
+    text-align: left;
+    border-bottom: 1px solid #ddd;
+}
+
+th {
+    background-color: #333;
+    padding-left:15px;
+    color: #fff;
+}
+
+ td:nth-child(4),td:nth-child(6),td:nth-child(5) {
+   text-align: center;
+   }
+   
+
+tr:nth-child(even) {
+    background-color: #f2f2f2;
+}
+form button{
+	padding: 8px 16px;
+    background-color: #ffd700;
+    color: #000;
+    outline:none;
+    border:none;
+    cursor:pointer;
+    text-decoration: none;
+    border-radius: 4px;
+    margin-bottom: 10px;
+}
+ form button:hover{
+ 	background-color: #FFC107;
+ }   
+
+.delete_btn{
+	padding: 5px 14px;
+    background-color: red;
+    color: white;
+    
+    text-decoration:none;
+    border-radius: 4px;
+}
+
+
+
+</style>
+
+
+</head>
+<body>
+	<header>
+        <nav>
+            <div class="container">
+            	 <img alt="logo" src="images/homelogo.jpg">
+                <div class="logo">TLC Hotels</div>
+                <ul class="nav-links">
+                    <li class="hd"><a th:href="@{/home}">Home</a></li>
+                    <li class="hd"><a th:href="@{/Rooms}">Rooms</a></li>
+                    <li class="hd"><a th:href="@{/Reservations}">Reservations</a></li>
+                    <li class="hd"><a th:href="@{/Contact}">Contact</a></li>
+                    <li><span sec:authorize="isAuthenticated"><a th:href="@{/logout}" class="logout-btn">Logout</a></span></li> <!-- Add class for styling -->
+                </ul>
+            </div>
+        </nav>
+    </header>
+    
+    
+    <div th:if="${message}" id="successMessage" th:text="${message}" th:class="${alertClass}"></div>
+    <h1>All Rooms</h1>
+    <table>
+        <thead>
+            <tr>
+                <th>Room ID</th>
+                <th>Room Type</th>
+                <th>Description</th>
+                <th>Capacity</th>
+                <th>Price per Night</th>
+                <th>Available</th>
+                <th>Action</th>
+            </tr>
+        </thead>
+        <tbody>
+            <!-- Loop through each room and display its details -->
+            <tr th:each="room : ${rooms}">
+                <td th:text="${room.roomID}"></td>
+                <td th:text="${room.roomType}"></td>
+                <td th:text="${room.description}"></td>
+                <td th:text="${room.capacity}"></td>
+                <td th:text="${room.pricepernight}"></td>
+                <td th:text="${room.available} ? 'Yes' : 'No'"></td>
+                <td>
+                    <!-- Add a button to update room details -->
+                    <form th:action="@{/update-room/{roomId}(roomId=${room.roomID})}" method="get">
+                        <button type="submit">Update</button>
+                        <a th:href="@{'/delete-room/' + ${room.roomID}}" class="delete_btn">Delete</a>
+                    </form>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    
+  
+    <footer>
+    <div class="container2">
+        <p>&copy; 2024 Hotel Reservation System. All rights reserved.</p>
+        <div class="social-icons">
+            <!-- Replace "#" with the actual links to your social media profiles -->
+            <a href="#" class="fa fa-facebook"></a>
+            <a href="#" class="fa fa-twitter"></a>
+            <a href="#" class="fa fa-instagram"></a>
+            <!-- Add more social media icons as needed -->
+        </div>
+        <div>Designed by Manoj Pandi👻👻</div>
+    </div>
+</footer>
+    
+    
+    <script>
+        // JavaScript function to hide the success message after 5 seconds
+        function hideSuccessMessage() {
+            var successMessage = document.getElementById("successMessage");
+            if (successMessage) {
+                setTimeout(function() {
+                    successMessage.style.display = "none";
+                }, 5000); // 5000 milliseconds = 5 seconds
+            }
+        }
+        // Call the function when the page loads
+        window.onload = function() {
+            hideSuccessMessage();
+        };
+    </script>
+    
+    
+	
+</body>
+</html>

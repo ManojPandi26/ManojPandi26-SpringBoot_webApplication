@@ -1,0 +1,169 @@
+/* Global Styles */
+body {
+    font-family: 'Roboto', sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f0f0f0;
+    color: #333;
+}
+.container {
+    
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    margin: 0 auto;
+    padding: 0 40px;
+}
+
+/* Header Styles */
+header {
+    background-color: #333;
+    color: #fff;
+    padding: 20px 0;
+    text-align: center;
+    position: fixed;
+    width: 100%;
+    top: 0;
+    left: 0;
+    z-index: 100;
+}
+
+header .container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+header .container img {
+    width: 70px; /* Adjust the width as needed */
+    height: 70px;
+    border-radius:35px;
+    z-index: 1;
+}
+
+.logo {
+    font-size: 44px;
+    font-weight: 700;
+    margin-left:-650px;
+
+}
+
+.nav-links {
+    list-style-type: none;
+    display: flex;
+}
+
+.nav-links li {
+    margin-right: 20px;
+}
+
+.nav-links li a {
+    color: #fff;
+    text-decoration: none;
+}
+.hd{
+	position: relative;
+	width: max-content;
+}
+.hd::after{
+	position: absolute;
+	content: "";
+	top:94%;
+	left:0;
+	height:2px;
+	width:100%;
+	background-color: #FFC107;
+	transition:0.5s;
+	transform:scale(0);
+}
+.hd:hover::after{
+	transform:scale(1);
+}
+
+.nav-links .hd a:hover {
+    color:#FFC107 ;
+}
+
+.logout-btn {
+    background-color: #FFC107;
+    color: #fff;
+    padding: 10px 20px;
+    border-radius: 5px;
+    text-decoration: none;
+    font-size: 18px;
+}
+
+.logout-btn:hover {
+    background-color: #FFA000;
+}
+
+
+
+
+
+
+/* Footer Styles */
+footer {
+    background-color: #333;
+    color: #fff;
+    text-align: center;
+    padding: 20px 0;
+    width: 100%;
+    bottom: 0;
+    left: 0;
+    z-index: 1;
+}
+
+
+
+.book-btn {
+    padding: 8px 16px;
+    background-color: #ffd700;
+    color: #000;
+    text-decoration: none;
+    border-radius: 4px;
+}
+
+.booked_btn{
+	padding: 8px 20px;
+    background-color: red;
+    color: white;
+    text-decoration: none;
+    border-radius: 4px;
+}
+
+
+
+.book-btn:hover {
+    background-color: #FFC107;
+}
+
+
+/* Table Styles */
+table {
+    width: 85%;
+    margin: 150px auto; /* Adjust margin as needed */
+    border-collapse: collapse;
+}
+
+
+th, td {
+    padding: 12px;
+    text-align: left;
+    border-bottom: 1px solid #ddd;
+}
+
+th {
+    background-color: #333;
+    padding-left:15px;
+    color: #fff;
+}
+
+ td:nth-child(4) {
+   text-align: center;
+   }
+   
+
+tr:nth-child(even) {
+    background-color: #f2f2f2;
+}
+

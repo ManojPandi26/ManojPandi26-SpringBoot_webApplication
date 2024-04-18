@@ -1,0 +1,191 @@
+/* Global Styles */
+body {
+    font-family: 'Roboto', sans-serif;
+    margin: 0;
+    padding: 0;
+    
+}
+
+.container {
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    margin: 0 auto;
+    padding: 0 40px;
+    
+}
+
+/* Header Styles */
+header {
+    background-color: transparent; /* Make the header transparent */
+    color: #fff;
+    position: absolute; /* Position the header absolutely */
+    width: 100%; /* Make the header full-width */
+    top: 0; /* Align the header to the top */
+    left: 0; /* Align the header to the left */
+    padding-top:15px;
+    z-index: 1;
+}
+
+header .container img {
+    width: 70px; /* Adjust the width as needed */
+    height: 70px;
+    border-radius:35px;
+    z-index: 1;
+}
+
+.logo {
+    font-size: 44px;
+    font-weight: 700;
+    margin-left:-650px;
+
+}
+
+.nav-links {
+    list-style-type: none;
+    display: flex;
+}
+
+.nav-links li {
+    margin-right: 20px;
+}
+
+.nav-links li a {
+    color: #fff;
+    text-decoration: none;
+}
+.hd{
+	position: relative;
+	width: max-content;
+}
+.hd::after{
+	position: absolute;
+	content: "";
+	top:94%;
+	left:0;
+	height:2px;
+	width:100%;
+	background-color: #FFC107;
+	transition:0.5s;
+	transform:scale(0);
+}
+.hd:hover::after{
+	transform:scale(1);
+}
+
+.nav-links .hd a:hover {
+    color:#FFC107 ;
+}
+
+
+/* Hero Section Styles */
+.hero {
+    background: url("../images/homebgd.jpg");
+    background-size: cover;
+    color: #fff;
+    padding: 250px 0;
+    text-align: center;
+    position: relative;
+   
+}
+
+.hero:before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+}
+
+.hero h1 {
+    font-size: 48px;
+    margin-bottom: 20px;
+    position: relative;
+    z-index: 1;
+}
+
+.hero p {
+    font-size: 20px;
+    margin-bottom: 30px;
+    position: relative;
+    z-index:1;
+}
+
+.btn {
+    background-color: #FFC107;
+    color: #333;
+    padding: 15px 30px;
+    border: none;
+    border-radius: 5px;
+    text-decoration: none;
+    font-size: 18px;
+    position: relative;
+    z-index:1;
+    
+}
+
+
+.btn:hover {
+    background-color: #FFA000;
+}
+
+
+/* Features Section Styles */
+.features {
+    padding:30px 0;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    
+    
+}
+
+.features h2 {
+    text-align: center;
+    margin-bottom: 50px;
+}
+
+.feature {
+    text-align: center;
+    margin-bottom: 40px;
+}
+
+.feature img {
+    width: 400px;
+    height: 280px;
+    margin-bottom: 20px;
+}
+
+.feature h3 {
+    font-size: 24px;
+    margin-bottom: 10px;
+}
+
+.feature p {
+    font-size: 18px;
+}
+
+/* Footer Styles */
+footer {
+    background-color: #333;
+    color: #fff;
+    text-align: center;
+    padding: 20px 0;
+}
+
+
+/* Additional CSS for styling the login button */
+.logout-btn {
+    background-color: #FFC107;
+    color: #fff;
+    padding: 10px 20px;
+    border-radius: 5px;
+    text-decoration: none;
+    font-size: 18px;
+}
+
+.logout-btn:hover {
+    background-color: #FFA000;
+}

@@ -1,0 +1,263 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Confirmation</title>
+    <style >
+body {
+    font-family: 'Roboto', sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f0f0f0;
+    color: #333;
+}
+.container {
+    
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    margin: 0 auto;
+    padding: 0 40px;
+}
+
+/* Header Styles */
+header {
+    background-color: #333;
+    color: #fff;
+    padding: 20px 0;
+    text-align: center;
+    position: fixed;
+    width: 100%;
+    top: 0;
+    left: 0;
+    z-index: 100;
+}
+
+header .container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+header .container img {
+    width: 70px; /* Adjust the width as needed */
+    height: 70px;
+    border-radius:35px;
+    z-index: 1;
+}
+
+.logo {
+    font-size: 44px;
+    font-weight: 700;
+    margin-left:-650px;
+
+}
+
+.nav-links {
+    list-style-type: none;
+    display: flex;
+}
+
+.nav-links li {
+    margin-right: 20px;
+}
+
+.nav-links li a {
+    color: #fff;
+    text-decoration: none;
+}
+.hd{
+	position: relative;
+	width: max-content;
+}
+.hd::after{
+	position: absolute;
+	content: "";
+	top:94%;
+	left:0;
+	height:2px;
+	width:100%;
+	background-color: #FFC107;
+	transition:0.5s;
+	transform:scale(0);
+}
+.hd:hover::after{
+	transform:scale(1);
+}
+
+.nav-links .hd a:hover {
+    color:#FFC107 ;
+}
+
+.logout-btn {
+    background-color: #FFC107;
+    color: #fff;
+    padding: 10px 20px;
+    border-radius: 5px;
+    text-decoration: none;
+    font-size: 18px;
+}
+
+.logout-btn:hover {
+    background-color: #FFA000;
+}
+
+.container1 {
+	width: 550px;
+	margin: 0 auto;
+	padding: 0 20px;
+}
+
+/* Footer Styles */
+footer {
+    background-color: #333;
+    color: #fff;
+    text-align: center;
+    padding: 20px 0;
+    position: fixed;
+    width: 100%;
+    bottom: 0;
+    left: 0;
+    z-index: 1;
+}
+
+
+h1 {
+	font-family: 'Verdana', sans-serif;
+	text-align: center;
+	color: #333;
+	margin-top: 140px;
+}
+
+p {
+	font-size: 18px;
+	color: white;
+	margin-bottom: 15px;
+	font-weight: bold;
+}
+
+span {
+	font-weight: bold;
+	color: #FFC107;
+}
+
+.confirmation-info {
+	background-color: rgba(0, 0, 0, 0.8);
+	border-radius: 10px;
+	padding: 20px 60px;
+	box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+	margin-top: 30px;
+	position: relative;
+}
+
+.confirmation-info p {
+	margin-bottom: 15px;
+}
+
+.confirmation-info p:last-child {
+	margin-bottom: 0;
+}
+
+.errormsg {
+	background-color: #FFC107;
+	position: absolute;
+	margin-left: 50%;
+	display: inline-block;
+	padding: 8px 20px;
+	margin-top: -80px;
+	font-size: 18px;
+	font-weight: bold;
+	transform: translate(-50%, -50%);
+	border-radius: 10px;
+	z-index: 1000;
+}
+
+.confirmation-info .submit {
+	padding: 11px 20px;
+	margin-right: 10px;
+	border: none;
+	margin-left:17%;
+	border-radius: 5px;
+	cursor: pointer;
+	background-color: #ffcc00;
+	transition: background-color 0.3s;
+}
+
+.confirmation-info .submit:hover {
+	background-color: #dfa700;
+}
+
+.confirmation-info a {
+	text-decoration: none;
+}
+
+.confirmation-info a button {
+	padding: 10px 19px;
+	margin-right: 10px;
+	margin-top:-35px;
+	border: none;
+	border-radius: 5px;
+	cursor: pointer;
+	transition: background-color 0.3s;
+	position: absolute;
+}
+.confirmation-info a button:hover{
+	background-color: #ddd;
+}
+
+</style>
+</head>
+<body>
+    <header>
+        <nav>
+            <div class="container">
+            	 <img alt="logo" src="images/homelogo.jpg">
+                <div class="logo">TLC Hotels</div>
+                <ul class="nav-links">
+                    <li class="hd"><a th:href="@{/home}">Home</a></li>
+                    <li class="hd"><a th:href="@{/Rooms}">Rooms</a></li>
+                    <li class="hd"><a th:href="@{/Rerservations}">Reservations</a></li>
+                    <li class="hd"><a th:href="@{/Contact}">Contact</a></li>
+                    <li><span sec:authorize="isAuthenticated"><a th:href="@{/logout}" class="logout-btn">Logout</a></span></li> <!-- Add class for styling -->
+                </ul>
+            </div>
+        </nav>
+    </header>
+	
+      <div class="container1">
+        <h1>Booking Confirmation</h1>
+        <div class="confirmation-info">
+            <p>Room ID: <span th:text="${bookingForm.roomId}"></span></p>
+            <p>No of Persons: <span th:text="${bookingForm.noOfPersons}"></span></p>
+            <p>Check-in Date: <span th:text="${bookingForm.checkInDate}"></span></p>
+            <p>Check-out Date: <span th:text="${bookingForm.checkOutDate}"></span></p>	
+            <p>Number of Days: <span th:text="${numberOfDays}"></span></p>
+        <p>Total Amount: <span th:text="${totalAmount}"></span></p>
+            <!-- Add other relevant details -->
+
+            <form th:action="@{/confirmation}" th:object="${bookingForm}" method="post">
+                <!-- Include any hidden fields if needed -->
+                 <input type="hidden" th:field="*{roomId}" />
+    <input type="hidden" th:field="*{noOfPersons}" />
+    <input type="hidden" th:field="*{checkInDate}" />
+    <input type="hidden" th:field="*{checkOutDate}" />
+    <input type="hidden" th:field="*{totalAmount}" />
+                
+                <button class="submit" type="submit">Confirm Reservation</button>
+            </form>
+            <!-- Add "Edit" button to redirect to available rooms -->
+            <a th:href="@{/Rooms}"><button>Edit</button></a>
+        </div>
+    </div>
+   
+   
+    <footer>
+        <div class="container2">
+            <p>&copy; 2024 Hotel Reservation System. All rights reserved.</p>
+        </div>
+    </footer>
+
+</body>
+</html>
+
+</html>

@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Booking</title>
+<link rel="stylesheet" th:href="@{Styles/Booking.css}">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css"/>
+
+</head>
+<body>
+	<header>
+        <nav>
+            <div class="container">
+            	 <img alt="logo" src="images/homelogo.jpg">
+                <div class="logo">TLC Hotels</div>
+                <ul class="nav-links">
+                    <li class="hd"><a th:href="@{/home}">Home</a></li>
+                    <li class="hd"><a th:href="@{/Rooms}">Rooms</a></li>
+                    <li class="hd"><a th:href="@{/Reservations}">Reservations</a></li>
+                    <li class="hd"><a th:href="@{/Contact}">Contact</a></li>
+                    <li><span sec:authorize="isAuthenticated"><a th:href="@{/logout}" class="logout-btn">Logout</a></span></li> <!-- Add class for styling -->
+                </ul>
+            </div>
+        </nav>
+    </header>
+
+	<section class="availability">
+		<div class="container">
+			<div class="availability-content">
+				<div class="form-container">
+					<h1>Selected Room!..</h1>
+					<div class="roomdetails">
+						<div>
+							<span>Roomtype</span>
+							<p th:text="${room.roomType}">Room Type</p>
+						</div>
+						<div>
+							<span>Description</span>
+							<p th:text="${room.description}">Description</p>
+						</div>
+						<div>
+							<span>PriceperNight</span>
+							<p th:text="${room.pricepernight}">Price Per Night</p>
+						</div>
+						<div>
+							<span>Capacity</span>
+							<p th:text="${room.capacity}">Capacity</p>
+						</div>
+					</div>
+
+
+					<!-- Add form to input check-in and check-out dates -->
+					<form th:action="@{/confirmBooking}" method="post"
+						th:object="${bookingForm}" onsubmit="return validateDates()">
+						<input type="hidden" th:field="*{roomId}" /> <label
+							for="noOfPersons">Number of Persons:</label> <input
+							class="numperson" type="number" id="noOfPersons"
+							placeholder="Persons" name="noOfPersons"
+							th:field="*{noOfPersons}" min="1" max="5" required /> <span
+							class="errormsg" th:if="${param.errorcapacity}"
+							style="color: red;">Capacity exceeded!.</span> <label
+							for="checkInDate">Check-in Date:</label> <input type="date"
+							id="checkInDate" name="checkInDate" th:field="*{checkInDate}"
+							th:attr="value=${#dates.format(bookingForm.checkInDate, 'yyyy-MM-dd')}"
+							required /> <br /> <label for="checkOutDate">Check-out
+							Date:</label> <input type="date" id="checkOutDate"
+							name="checkOutDate" th:field="*{checkOutDate}"
+							th:attr="value=${#dates.format(bookingForm.checkOutDate, 'yyyy-MM-dd')}"
+							required /> <br /> <input class="confirm_btn" type="submit"
+							value="Confirm Booking" />
+					</form>
+				</div>
+				<div class="image-container">
+					<img src="images/bgd.jpg" alt="Image">
+				</div>
+			</div>
+		</div>
+	</section>
+
+	<footer>
+    <div class="container2">
+        <p>&copy; 2024 Hotel Reservation System. All rights reserved.</p>
+        <div class="social-icons">
+            <!-- Replace "#" with the actual links to your social media profiles -->
+            <a href="#" class="fa fa-facebook"></a>
+            <a href="#" class="fa fa-twitter"></a>
+            <a href="#" class="fa fa-instagram"></a>
+            <!-- Add more social media icons as needed -->
+        </div>
+        <div>Designed by Manoj Pandi👻👻</div>
+    </div>
+</footer>
+
+
+
+	<script>
+        function validateDates() {
+            var checkinDate = new Date(document.getElementById('checkInDate').value);
+            var checkoutDate = new Date(document.getElementById('checkOutDate').value);
+            var currentDate = new Date();
+            
+            // Remove time from current date for proper comparison
+            currentDate.setHours(0, 0, 0, 0);
+
+            // Check if check-in date is before current date
+            if (checkinDate.getTime() < currentDate.getTime()) {
+                alert("Check-in date cannot be before the current date.");
+                return false;
+            }
+
+            // Check if checkout date is after checkin date
+            if (checkoutDate.getTime() <= checkinDate.getTime()) {
+                alert("Check-out date must be after the check-in date.");
+                return false;
+            }
+
+            return true;
+        }
+    </script>
+
+
+</body>
+
+</html>
+

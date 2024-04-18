@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Dashboard</title>
+    <link rel="stylesheet" href="Styles/adminstyle.css">
+     <script src="https://kit.fontawesome.com/your-fontawesome-kit.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+</head>
+<body>
+    <div class="container">
+        <aside class="sidebar">
+            <div class="logo">
+                <img src="images/homelogo.jpg" alt="Hotel Logo">
+                <div class="welcome">
+                <h2>TLCHotels Management</h2>
+                	<p>Welcome Admin!..</p>
+                	<span>Manoj</span> 
+                </div>
+            </div>
+            <ul class="menu">
+                <li><a th:href="@{/admin}"><i class="fas fa-tachometer-alt"></i> Dashboard</a></li>
+                <li><a href="#"><i class="fas fa-bed"></i> Bookings</a></li>
+                <li><a th:href="@{/Rooms}"><i class="fas fa-door-open"></i> Rooms</a></li>
+                <li><a th:href="@{/Contact}"><i class="fas fa-user-friends"></i> Reach us</a></li>                
+                <li><a th:href="@{/updaterooms}"><i class="fas fa-edit"></i> Update Rooms</a></li>
+        		<li><a th:href="@{/add}"><i class="fas fa-plus-circle"></i> Add Rooms</a></li>                
+            </ul>
+            <div><span sec:authorize="isAuthenticated"><a th:href="@{/logout}" class="logout-btn"><i class="fa fa-sign-out-alt"></i>Logout </a></span>
+            </div>
+        </aside>
+        <main class="main-dashboard">
+            <div class="header">
+                <h1>TLCHotel's Admin Dashboard</h1>
+            </div>
+           <div class="metrics">
+                <div class="metric customers">
+                    <i class="fas fa-users"></i>
+                    <p>Customers</p>
+                    <span th:text="${dashboardMetrics.totalUsersCount}"></span>
+                </div>
+                <div class="metric staff">
+                    <i class="fas fa-user-tie"></i>
+                    <p>Staffs</p>
+                    <span th:text="${dashboardMetrics.totalAdminsCount}"></span>
+                </div>
+                <div class="metric rooms">
+                    <i class="fas fa-bed"></i>
+                    <p>Total Rooms</p>
+                    <span th:text="${dashboardMetrics.totalRooms}"></span>
+                </div>
+                <div class="metric occupied">
+                    <i class="fas fa-calendar-check"></i>
+                    <p>Occupied Rooms</p>
+                    <span th:text="${dashboardMetrics.bookedRoomsCount}"></span>
+                </div>
+                <div class="metric available">
+                    <i class="fas fa-calendar-plus"></i>
+                    <p>Available Rooms</p>
+                    <span th:text="${dashboardMetrics.availableRoomsCount}"></span>
+                </div>
+                <div class="metric revenue">
+                    <i class="fas fa-dollar-sign"></i>
+                    <p>Revenue</p>
+                    <span th:text="${dashboardMetrics.totalRevenue}"></span>
+                </div>
+            </div>
+            <div class="booking-details">
+                <h2>Recent Booking Details</h2>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>No</th>
+                            <th>Customer</th>
+                            <th>Room & Type</th>
+                            <th>Check-In Date</th>
+                            <th>Check-Out Date</th>
+                            <th>No.of.Days</th>
+                            <th>No.of.Persons</th>
+                            <th>Status</th>
+                            <th>Total Bill</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+						<tr th:each="reservation, reservationStat : ${recentBookings}">
+							<!-- Populate the table cells with reservation details -->
+							<td th:text="${reservationStat.index + 1}"></td>
+							<!-- No -->
+							<td th:text="${reservation.customer.username}"></td>
+							<!-- Customer -->
+							<td th:text="${reservation.room.roomType}"></td>
+							<!-- Room & Type -->
+							<td th:text="${#dates.format(reservation.checkInDate, 'dd-MM-yyyy')}"></td>
+							<!-- Check-In Date -->
+							<td th:text="${#dates.format(reservation.checkOutDate, 'dd-MM-yyyy')}"></td>
+							<!-- Check-Out Date -->
+							<td th:text="${reservation.stayDays}"></td>
+							
+							<td th:text="${reservation.noOfPersons}"></td>
+							
+							<td>Booked</td>
+							<!-- Status -->
+							<td th:text="${reservation.totalAmount}"></td>
+							<!-- Total Bill -->
+						</tr>
+						<!-- Add more booking rows as needed -->
+                    </tbody>
+                </table>
+            </div>
+            
+            <div class="booking-details">
+                <h2>Recent Registration Details</h2>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>No</th>
+                            <th>UserName</th>
+                            <th>FullName</th>
+                            <th>Email</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr th:each="user, reservationStat : ${recentReservation}">
+                            <td th:text="${reservationStat.index + 1}"></td>
+                            
+                            <td th:text="${user.username}"></td>
+                            
+                            <td th:text="${user.fullname}"></td>
+                            	
+                            <td th:text="${user.email}"></td>
+                        </tr>
+                        <!-- Add more booking rows as needed -->
+                    </tbody>
+                </table>
+            </div>
+            
+        </main>
+    </div>
+</body>
+</html>

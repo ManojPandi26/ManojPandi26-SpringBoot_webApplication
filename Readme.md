@@ -139,3 +139,6 @@ I am Manoj Pandi, a passionate software developer with a keen interest in web de
 ### Upcoming Version
 - Dockerization of the application for deployment.
 
+## Support
+
+For general inquiries or assistance, you can contact us via email at manojpandi680@gmail.com

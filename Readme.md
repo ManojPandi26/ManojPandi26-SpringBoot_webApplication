@@ -104,7 +104,11 @@ java -jar target/TLCRoomBooking-0.0.1-SNAPSHOT.jar
 
 ## Optimizations
 
-What optimizations did you make in your code? E.g. refactors, performance improvements, accessibility
+- Database Indexing: Use database indexes to improve the performance of frequently executed database queries, such as room searches and reservation retrievals. Identify and create indexes on columns that are commonly used in WHERE clauses and JOIN conditions.
+- Implement caching mechanisms to reduce the load on the application and database servers. Cache frequently accessed data, such as room availability and user sessions, using in-memory caches like Redis or caching solutions provided by Spring Cache
+- Optimize database queries by analyzing query execution plans and identifying opportunities for optimization. Use database profiling tools to monitor query performance and identify slow-performing queries that may benefit from optimization.
+- Configure connection pooling to efficiently manage database connections and improve application scalability. Use connection pooling libraries provided by your database driver or application server to reuse database connections and minimize connection overhead.
+- Minify and compress static resources such as HTML, CSS with Thymeleaf Template Engine to reduce page load times and minimize bandwidth usage. Use tools like Webpack or Gulp to automate the minification and compression process.
 
 
 ## 🚀 About Me
